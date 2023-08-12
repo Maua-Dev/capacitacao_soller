@@ -5,17 +5,31 @@
 # from .item_repository_interface import IItemRepository
 
 
-# class ItemRepositoryMock(IItemRepository):
-#     items: Dict[int, Item]
-    
-#     def __init__(self):
-#         self.items = {
-#             1: Item(name="Barbie", price=48.90, item_type=ItemTypeEnum.TOY, admin_permission=False),
-#             2: Item(name="Hamburguer", price=38.00, item_type=ItemTypeEnum.FOOD, admin_permission=False),
-#             3: Item(name="T-shirt", price=22.95, item_type=ItemTypeEnum.CLOTHES, admin_permission=False),
-#             4: Item(name="Super Mario Bros", price=55.00, item_type=ItemTypeEnum.GAMES, admin_permission=True)
-#         }
+from typing import List
+
+from ..enums.item_type_enum import ItemTypeEnum
+
+from ..entities.item import Item
+from ..repo.item_repository_interface import IItemRepository
+
+
+class ItemRepositoryMock(IItemRepository):
+    items: List[Item]
+
+    def __init__(self):
+        self.items = [
+            Item("Maçã Dourada", category=ItemTypeEnum.FOOD, item_id = 1, durability = 0.5 ),
+            Item("Baú", category=ItemTypeEnum.BLOCK, item_id = 2, durability = 0 ),
+            Item("Madeira", category=ItemTypeEnum.BLOCK, item_id = 3, durability = 0 ),
+            Item("Machado de Diamante", category=ItemTypeEnum.TOOL, item_id = 4, durability = 0.1 ),
+
+        ]
         
+    def get_all_items(self) -> List[Item]:
+        return self.items
+
+
+
 #     def get_all_items(self) -> List[Item]:
 #         return self.items.values()
     
