@@ -25,6 +25,27 @@ class Test_Item:
         with pytest.raises(ParamNotValidated):
           item = Item(name, category=ItemTypeEnum.FOOD, item_id = 1, durability = 1.5 )
 
+    def test_to_dict(self):
+         
+        name = "Maçã Dourada"
+        category = ItemTypeEnum.FOOD
+        item_id = 1
+        durability = 0.5
+
+        item = Item(name, category=category, item_id = item_id, durability = durability )
+
+        item_dict = item.to_dict()
+
+        expected_item_dict = {
+                "name": name,
+                "category": category.value,
+                "item_id": item_id,
+                "durability":  durability
+            }
+        
+        assert item_dict == expected_item_dict
+
+        
         
 #     def test_item(self):
 #         item = Item("test", 1.0, ItemTypeEnum.FOOD, admin_permission=True)

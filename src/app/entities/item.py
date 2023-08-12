@@ -1,5 +1,6 @@
 # from typing import Tuple
 
+from typing import Dict
 from ..errors.entity_errors import ParamNotValidated
 from ..enums.item_type_enum import ItemTypeEnum
 
@@ -24,6 +25,14 @@ class Item:
       return False
     
     return True
+  
+  def to_dict(self) -> Dict:
+    return {
+      "name": self.name,
+      "category": self.category.value,
+      "item_id": self.item_id,
+      "durability":  self.durability
+    }
 
 #     def __init__(self, name: str=None, price: float=None, item_type: ItemTypeEnum=None, admin_permission: bool=None):
 #         validation_name = self.validate_name(name)
