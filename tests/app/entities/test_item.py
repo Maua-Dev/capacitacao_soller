@@ -1,10 +1,31 @@
-# import pytest
-# from src.app.entities.item import Item
-# from src.app.enums.item_type_enum import ItemTypeEnum
-# from src.app.errors.entity_errors import ParamNotValidated
+import pytest
 
 
-# class Test_Item:
+from src.app.entities.item import Item
+from src.app.enums.item_type_enum import ItemTypeEnum
+from src.app.errors.entity_errors import ParamNotValidated
+
+
+class Test_Item:
+    def test_item(self):
+        
+        name = "Maçã Dourada"
+
+        item = Item(name, category=ItemTypeEnum.FOOD, item_id = 1, durability = 0.1 )
+
+        assert item.name == name
+        assert item.category == ItemTypeEnum.FOOD
+        assert item.item_id == 1
+        assert item.durability == 0.1
+
+    def test_item_durability_wrong(self):
+        
+                
+        name = "Maçã Dourada"
+        with pytest.raises(ParamNotValidated):
+          item = Item(name, category=ItemTypeEnum.FOOD, item_id = 1, durability = 1.5 )
+
+        
 #     def test_item(self):
 #         item = Item("test", 1.0, ItemTypeEnum.FOOD, admin_permission=True)
 #         assert item.name == "test"
