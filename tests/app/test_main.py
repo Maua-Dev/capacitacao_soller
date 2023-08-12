@@ -5,9 +5,23 @@
 # from src.app.main import get_all_items, get_item, create_item, delete_item, update_item
 # from src.app.repo.item_repository_mock import ItemRepositoryMock
 
+from src.app.main import get_all_items
+
+
 class Test_Main:
-    def test_start_project(self):
-        assert False == False
+    def test_get_all_items(self):
+        response = get_all_items()
+
+        expected_response = {
+            'items': [{'name': 'Maçã Dourada', 'category': 'FOOD', 'item_id': 1, 'durability': 0.5}, {'name': 'Baú', 'category': 'BLOCK', 'item_id': 2, 'durability': 0}, {'name': 'Madeira', 'category': 'BLOCK', 'item_id': 3, 'durability': 0}, {'name': 'Machado de Diamante', 'category': 'TOOL', 'item_id': 4, 'durability': 0.1}]
+        }
+
+        assert type(response) == dict
+        assert response == expected_response
+
+
+        
+
 #     def test_get_all_items(self):
 #         repo = ItemRepositoryMock()
 #         response = get_all_items()

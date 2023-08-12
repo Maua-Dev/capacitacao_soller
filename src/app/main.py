@@ -1,6 +1,8 @@
 from fastapi import FastAPI, HTTPException
 from mangum import Mangum
 
+from .environments import Environments
+
 # from .environments import Environments
 
 # from .repo.item_repository_mock import ItemRepositoryMock
@@ -14,14 +16,20 @@ from mangum import Mangum
 
 app = FastAPI()
 
-# repo = Environments.get_item_repo()()
+repo = Environments.get_item_repo()()
 
-# @app.get("/items/get_all_items")
-# def get_all_items():
-#     items = repo.get_all_items()
-#     return {
-#         "items": [item.to_dict() for item in items]
-#     }
+@app.get("/items/get_all_items")
+def get_all_items():
+    items = repo.get_all_items()
+
+
+    items_list = list()
+    for item in items:
+        items_list.append(item.to_dict())
+
+    return {
+        "items": items_list
+    }
 
 # @app.get("/items/{item_id}")
 # def get_item(item_id: int):
